@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from './Context/UserContext';
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext)
+    const { signIn, signInWithGoogle } = useContext(AuthContext)
 
     const handelSubmit = (event) => {
         event.preventDefault();
@@ -13,6 +13,17 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user
+                console.log(user)
+            })
+            .catch(error => {
+            console.error(error)
+        })
+
+    }
+    const handelGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
                 console.log(user)
             })
             .catch(error => {
@@ -50,6 +61,8 @@ const Login = () => {
                                 <button className="btn btn-primary">Login</button>
                             </div>
                         </form>
+
+                        <button onClick={handelGoogleSignIn} className="btn btn-active btn-primary hover:bg-sky-700">Sign In with Google</button>
                     </div>
                 </div>
             </div>
