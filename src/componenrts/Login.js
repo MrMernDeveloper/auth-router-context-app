@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './Context/UserContext';
 
 const Login = () => {
-    const { signIn, signInWithGoogle } = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const handelSubmit = (event) => {
         event.preventDefault();
@@ -14,23 +16,15 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 console.log(user)
+                form.reset();
+                navigate('/')
             })
             .catch(error => {
             console.error(error)
         })
 
     }
-    const handelGoogleSignIn = () => {
-        signInWithGoogle()
-            .then(result => {
-                const user = result.user;
-                console.log(user)
-            })
-            .catch(error => {
-            console.error(error)
-        })
-
-    }
+   
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -62,7 +56,7 @@ const Login = () => {
                             </div>
                         </form>
 
-                        <button onClick={handelGoogleSignIn} className="btn btn-active btn-primary hover:bg-sky-700">Sign In with Google</button>
+                       
                     </div>
                 </div>
             </div>

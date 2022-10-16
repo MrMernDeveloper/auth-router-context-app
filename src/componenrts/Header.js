@@ -21,6 +21,7 @@ const Header = () => {
                 <Link className="btn btn-ghost normal-case text-2xl">Awesome Auth</Link>
                 <div className='mr-auto'>
                     <Link className="btn btn-ghost normal-case text-lg" to='/'>Home</Link>
+                    <Link className="btn btn-ghost normal-case text-lg" to='/orders'>Orders</Link>
                     <Link className="btn btn-ghost normal-case text-lg" to='/login'>Log In</Link>
                     <Link className="btn btn-ghost normal-case text-lg" to='/register'>Register</Link>
                     {user?.email && <span>Welcome, {user.email}</span>}
